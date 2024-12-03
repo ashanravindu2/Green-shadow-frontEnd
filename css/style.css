@@ -21,6 +21,8 @@
   border-radius: 18px;
 }
 
+
+
 :root {
   --main-color: #009444;
   --font-color: #000;
@@ -63,3 +65,5 @@
     --font-24px: 2.35vw;
   }
 }
+
+

@@ -1,10 +1,16 @@
-import {getAllField, getField, saveField, deleteField, updateField} from "../service/FieldService.js";
+import {
+  getAllField,
+  getField,
+  saveField,
+  deleteField,
+  updateField,
+} from "../service/FieldService.js";
 import { showAlerts } from "./DashbaordController.js";
-import {getAllStaff, getStaffMember} from "../service/StaffService.js";
+import { getAllStaff, getStaffMember } from "../service/StaffService.js";
 
 var Longitude = 0;
 var Latitude = 0;
-var selectedStaff = []
+var selectedStaff = [];
 
 var targetFieldCode = null;
 
@@ -19,7 +25,10 @@ $(document).ready(function () {
     $("#save-field-popup").removeClass("d-flex");
   });
 
-  $("#card-set").on("click",".field-card .action > :nth-child(1)",function () {
+  $("#card-set").on(
+    "click",
+    ".field-card .action > :nth-child(1)",
+    function () {
       $("#update-field-popup").addClass("d-flex");
       targetFieldCode = $(this).attr("data-id");
       loadDataToUpdateForm();
@@ -27,11 +36,15 @@ $(document).ready(function () {
     }
   );
 
-  $("#card-set").on("click",".field-card .action > :nth-child(3)",function () {
-    targetFieldCode = $(this).attr("data-id");
-    $("#view-field-popup").addClass("d-flex");
-    loadDataToFieldViewForm();
-  })
+  $("#card-set").on(
+    "click",
+    ".field-card .action > :nth-child(3)",
+    function () {
+      targetFieldCode = $(this).attr("data-id");
+      $("#view-field-popup").addClass("d-flex");
+      loadDataToFieldViewForm();
+    }
+  );
 
   $("#view-field-popup img").click(function () {
     $("#view-field-popup").removeClass("d-flex");
@@ -41,18 +54,21 @@ $(document).ready(function () {
     $("#update-field-popup").removeClass("d-flex");
   });
 
-  $("#card-set").on("click",".field-card .action > :nth-child(2)",function () {
-    targetFieldCode = $(this).attr("data-id");
-    deleteFieldData()
-  })
+  $("#card-set").on(
+    "click",
+    ".field-card .action > :nth-child(2)",
+    function () {
+      targetFieldCode = $(this).attr("data-id");
+      deleteFieldData();
+    }
+  );
 
-  $('.search-bar').on('keyup', function () {
+  $(".search-bar").on("keyup", function () {
     const value = $(this).val().toLowerCase();
     $("#card-set .field-card").filter(function () {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
     });
-  })
-
+  });
 });
 
 function loadTable() {
@@ -189,7 +205,6 @@ function loadMap() {
   initMap();
 }
 
-
 $("#save-field-popup button").click(function () {
   const fieldName = $("#save-field-popup .fieldName-text").val();
   const fieldSize = $("#save-field-popup .fieldSize-text").val();
@@ -288,55 +303,58 @@ $("#update-field-popup button").click(function () {
   if (!validateForm(fieldName, fieldSize, image1, image2)) {
     return;
   }
-
-  
 });
 
-function loadDataToUpdateForm(){
+function loadDataToUpdateForm() {
   console.log(targetFieldCode);
-  getField(targetFieldCode).then((result) => {
-    console.log(result)
-    $("#update-field-popup .fieldName-text").val(result.fieldName);
-    $("#update-field-popup .fieldSize-text").val(result.fieldSize);
-    Longitude = result.fieldLocation.x;
-    Latitude = result.fieldLocation.y;
-    loadMapToUpdate(Longitude,Latitude);
+  getField(targetFieldCode)
+    .then((result) => {
+      console.log(result);
+      $("#update-field-popup .fieldName-text").val(result.fieldName);
+      $("#update-field-popup .fieldSize-text").val(result.fieldSize);
+      Longitude = result.fieldLocation.x;
+      Latitude = result.fieldLocation.y;
+      loadMapToUpdate(Longitude, Latitude);
 
-    const file1 = base64ToFile(base64ToImageURL(result.image1), "image1.jpg");
-    const file2 = base64ToFile(base64ToImageURL(result.image2), "image2.jpg");
+      const file1 = base64ToFile(base64ToImageURL(result.image1), "image1.jpg");
+      const file2 = base64ToFile(base64ToImageURL(result.image2), "image2.jpg");
 
-    const dataTransfer1 = new DataTransfer();
-    const dataTransfer2 = new DataTransfer();
+      const dataTransfer1 = new DataTransfer();
+      const dataTransfer2 = new DataTransfer();
 
-    dataTransfer1.items.add(file1);
-    dataTransfer2.items.add(file2);
+      dataTransfer1.items.add(file1);
+      dataTransfer2.items.add(file2);
 
-    $("#update-field-popup .image-1")[0].files = dataTransfer1.files;
-    $("#update-field-popup .image-2")[0].files = dataTransfer2.files;
+      $("#update-field-popup .image-1")[0].files = dataTransfer1.files;
+      $("#update-field-popup .image-2")[0].files = dataTransfer2.files;
 
-    $("#update-field-popup .selected-staff").empty();
-    selectedStaff = result.staffId;
-    loadSelectStaff()
+      $("#update-field-popup .selected-staff").empty();
+      selectedStaff = result.staffId;
+      loadSelectStaff();
 
-    getAllStaff().then((staffList) => {
-      $("#update-field-popup .staff-combo").empty().append(
-          `<option value="N/A">N/A</option>`
-      )
-        staffList.forEach((staff) => {
+      getAllStaff()
+        .then((staffList) => {
+          $("#update-field-popup .staff-combo")
+            .empty()
+            .append(`<option value="N/A">N/A</option>`);
+          staffList.forEach((staff) => {
             $("#update-field-popup .staff-combo").append(
-            `<option value="${staff.id}">${dataRefactor(staff.id,15)} , ${staff.firstName}</option>`
+              `<option value="${staff.id}">${dataRefactor(staff.id, 15)} , ${
+                staff.firstName
+              }</option>`
             );
+          });
+        })
+        .catch((error) => {
+          console.log(error);
         });
-    }).catch((error) => {
-        console.log(error);
     })
-
-    }).catch((error) => {
+    .catch((error) => {
       console.log(error);
     });
-};
+}
 
-$('#update-field-popup .staff-combo').on('change', function () {
+$("#update-field-popup .staff-combo").on("change", function () {
   const staffId = $(this).val();
   let alreadyAdded = false;
 
@@ -349,36 +367,39 @@ $('#update-field-popup .staff-combo').on('change', function () {
 
   if (!alreadyAdded) {
     selectedStaff.push(staffId);
-    $('#update-field-popup .staff-combo').val("N/A");
+    $("#update-field-popup .staff-combo").val("N/A");
     loadSelectStaff();
   }
 });
 
 function loadSelectStaff() {
-    $('#update-field-popup .selected-staff').empty()
+  $("#update-field-popup .selected-staff").empty();
   selectedStaff.forEach((staffId) => {
-    $('#update-field-popup .selected-staff').append(
-        `<h6 data-id="${staffId}">${dataRefactor(staffId,15)}</h6>`
-    )
-  })
+    $("#update-field-popup .selected-staff").append(
+      `<h6 data-id="${staffId}">${dataRefactor(staffId, 15)}</h6>`
+    );
+  });
 }
 
-$('#update-field-popup .selected-staff').on('click', 'h6', function () {
-    const staffId = $(this).attr('data-id');
-    selectedStaff = selectedStaff.filter((staff) => staff !== staffId);
-    loadSelectStaff();
+$("#update-field-popup .selected-staff").on("click", "h6", function () {
+  const staffId = $(this).attr("data-id");
+  selectedStaff = selectedStaff.filter((staff) => staff !== staffId);
+  loadSelectStaff();
 });
 
-function viewLocOnMap (Longitude, Latitude,popupType) {
+function viewLocOnMap(Longitude, Latitude, popupType) {
   let map;
   let marker;
-  const defaultLocation = { lat: Latitude, lng: Longitude }; 
+  const defaultLocation = { lat: Latitude, lng: Longitude };
 
   function initMap() {
     alert("Map Loaded");
 
     // Initialize the map with jQuery-selected DOM element
-    const mapElement = popupType === "update" ? $("#update-field-popup #map")[0] : $("#view-field-popup #map")[0];
+    const mapElement =
+      popupType === "update"
+        ? $("#update-field-popup #map")[0]
+        : $("#view-field-popup #map")[0];
 
     map = new google.maps.Map(mapElement, {
       center: defaultLocation,
@@ -391,7 +412,7 @@ function viewLocOnMap (Longitude, Latitude,popupType) {
     });
 
     // Add a click listener to the map
-    if(popupType === "update"){
+    if (popupType === "update") {
       google.maps.event.addListener(map, "click", function (event) {
         const clickedLocation = event.latLng;
 
@@ -417,7 +438,7 @@ function viewLocOnMap (Longitude, Latitude,popupType) {
 }
 
 function base64ToFile(base64String, fileName) {
-  const arr = base64String.split(',');
+  const arr = base64String.split(",");
   const mime = arr[0].match(/:(.*?);/)[1];
   const bstr = atob(arr[1]);
   let n = bstr.length;
@@ -485,8 +506,7 @@ function loadDataToFieldViewForm() {
     });
 }
 
-function deleteFieldData(){
-
+function deleteFieldData() {
   Swal.fire({
     title: "Are you sure?",
     text: "Do you want to delete this Field?",
@@ -499,65 +519,64 @@ function deleteFieldData(){
   }).then((result) => {
     if (result.isConfirmed) {
       deleteField(targetFieldCode)
-          .then((result) => {
-            loadTable();
-            Swal.fire("Deleted!", "Field has been deleted.", "success");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        .then((result) => {
+          loadTable();
+          Swal.fire("Deleted!", "Field has been deleted.", "success");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     } else if (result.dismiss === Swal.DismissReason.cancel) {
       Swal.fire("Cancelled", "Your item is safe.", "info");
     }
   });
-
 }
 
-function loadMapToUpdate(x,y){
-    let map;
-    let marker;
-    const defaultLocation = { lat: y, lng: x };
+function loadMapToUpdate(x, y) {
+  let map;
+  let marker;
+  const defaultLocation = { lat: y, lng: x };
 
-    function initMap() {
-        alert("Map Loaded");
+  function initMap() {
+    alert("Map Loaded");
 
-        const mapElement = $("#update-field-popup #map")[0];
+    const mapElement = $("#update-field-popup #map")[0];
 
-        map = new google.maps.Map(mapElement, {
-        center: defaultLocation,
-        zoom: 13,
-        });
+    map = new google.maps.Map(mapElement, {
+      center: defaultLocation,
+      zoom: 13,
+    });
 
-        marker = new google.maps.Marker({
-        position: defaultLocation,
+    marker = new google.maps.Marker({
+      position: defaultLocation,
+      map: map,
+    });
+
+    // Add a click listener to the map
+    google.maps.event.addListener(map, "click", function (event) {
+      const clickedLocation = event.latLng;
+
+      // Remove existing marker, if any
+      if (marker) marker.setMap(null);
+
+      // Place a new marker
+      marker = new google.maps.Marker({
+        position: clickedLocation,
         map: map,
-        });
+      });
 
-        // Add a click listener to the map
-        google.maps.event.addListener(map, "click", function (event) {
-        const clickedLocation = event.latLng;
+      Longitude = clickedLocation.lng();
+      Latitude = clickedLocation.lat();
+      // alert(
+      //   `Latitude: ${clickedLocation.lat()}, Longitude: ${clickedLocation.lng()}`
+      // );
+    });
+  }
 
-        // Remove existing marker, if any
-        if (marker) marker.setMap(null);
-
-        // Place a new marker
-        marker = new google.maps.Marker({
-            position: clickedLocation,
-            map: map,
-        });
-
-        Longitude = clickedLocation.lng();
-        Latitude = clickedLocation.lat();
-        // alert(
-        //   `Latitude: ${clickedLocation.lat()}, Longitude: ${clickedLocation.lng()}`
-        // );
-        });
-    }
-
-    initMap();
+  initMap();
 }
 
-$('#update-field-popup button').click(function () {
+$("#update-field-popup button").click(function () {
   const fieldName = $("#update-field-popup .fieldName-text").val();
   const fieldSize = $("#update-field-popup .fieldSize-text").val();
   const image1 = $("#update-field-popup .image-1")[0];
@@ -581,11 +600,12 @@ $('#update-field-popup button').click(function () {
   }
 
   console.log(staffId);
-  updateField(formData, targetFieldCode, staffId).then((result) => {
-    showAlerts("Field updated successfully", "success");
-    loadTable();
-  }).catch((error) => {
-    console.log(error);
-  });
+  updateField(formData, targetFieldCode, staffId)
+    .then((result) => {
+      showAlerts("Field updated successfully", "success");
+      loadTable();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
-

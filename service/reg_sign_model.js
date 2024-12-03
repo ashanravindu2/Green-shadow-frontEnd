@@ -16,13 +16,9 @@ export function register(email, password, role) {
         console.log(result);
         //alert("User registered successfully.");
         resolve(result); // resolving with the response result
-
-
       },
       error: function (xhr, status, error) {
         reject(error); // rejecting on error
-
-        
       },
     });
   });

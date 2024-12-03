@@ -1,4 +1,4 @@
-import { login } from "./reg_sign_model.js";
+import { login } from "../service/reg_sign_model.js";
 import { saveCookie } from "../service/ToeknService.js";
 
 $(".signIn-btn").click(function () {

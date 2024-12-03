@@ -18,26 +18,15 @@ input + button {
   width: 43px;
   background: #dcdcdc;
 }
-.d-flex input{
-  box-shadow: rgba(0, 0, 0, 0.205) 5px 10px 20px 0px;
-}
+
 .add-crop-btn {
   border-radius: 10px;
-  background: #45a359;
+  background: #009444;
   color: #fff;
   font-size: 1vw;
   font-weight: 600;
   letter-spacing: 0.6px;
-  box-shadow: rgba(0, 0, 0, 0.205) 5px 10px 20px 0px;
 }
-.add-crop-btn:hover {
-  background: #488a5c;  
-}
-.add-crop-btn svg {
-  width: 1.5vw;
-  height: 100%;
-}
-
 
 #card-set{
     display: grid;

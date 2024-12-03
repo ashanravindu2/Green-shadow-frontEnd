@@ -1,41 +1,39 @@
-import { register } from '../service/reg_sign_model.js';
+import { register } from "../service/reg_sign_model.js";
 
-$('.register-btn').click(function() {
+$(".register-btn").click(function () {
   event.preventDefault();
-  const email = $('#email').val();
-  const password = $('#password').val();
-  const role = $('#role').val();
+  const email = $("#email").val();
+  const password = $("#password").val();
 
-  console.log(email, password, role);
+  const roleSelect = document.getElementById("role");
+  const selectedRole = roleSelect.options[roleSelect.selectedIndex].value;
 
-  const result = validation(email, password, role);
+  console.log(email, password, selectedRole);
+
+  const result = validation(email, password);
 
   if (result) {
-   register(email, password, role).
-   then((response) => {
-    const token = response.token;
-    document.cookie = `authToken=${token}; max-age=3600; path=/; Secure; HttpOnly; SameSite=Strict`;
-    console.log(`Cookie saved: authToken=${token}`);
+    register(email, password, selectedRole)
+      .then((response) => {
+        const token = response.token;
+        document.cookie = `authToken=${token}; max-age=3600; path=/; Secure; HttpOnly; SameSite=Strict`;
+        console.log(`Cookie saved: authToken=${token}`);
 
-    window.location.href = "/pages/signInPage.html";
-    
-  })
-  .catch((error) => {
-    console.error(error);
-    alert('Registration failed. Please check your credentials and try again.');
-  
-  });
-
+        window.location.href = "/pages/signInPage.html";
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(
+          "Registration failed. Please check your credentials and try again."
+        );
+      });
   }
-
 });
 
-
-
 // Validation function
 
 // Validation function
-function validation(email, password, role) {
+function validation(email, password) {
   const notyf = new Notyf({
     duration: 3000,
     position: {
@@ -68,17 +66,10 @@ function validation(email, password, role) {
   if (!password || password.length < 8) {
     notyf.error("Password must be at least 8 characters.");
     return false;
-  }
-  if (!role || role === "default") {
-    notyf.error("Please select a role.");
-    return false;
-  }
-  else {
+  } else {
     return true;
   }
-
 }
-
 
 // async function success() {
 //   const notyf = new Notyf({
@@ -102,4 +93,3 @@ function validation(email, password, role) {
 
 //   notyf.success("User registered successfully.");
 // }
- 
