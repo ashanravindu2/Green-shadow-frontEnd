@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Shadow Dashboard</title>
+    <link rel="stylesheet" href="/css/Wall/homepage.css">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="dashboard">
+    <!-- Main Content -->
+    <main class="content">
+        <!-- Header -->
+        <header class="content-header">
+            <h2>Dashboard Overview</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+        </header>
+
+        <!-- Overview Cards -->
+        <section class="overview-cards">
+            <div class="card">
+                <h3>Crop Summary</h3>
+                <p>Total Crop Types: <span class="highlight" id="staffcount">Loading...</span></p>
+            </div>
+            <div class="card">
+                <h3>Equipment Status</h3>
+                <p>Total Equipment: <span class="highlight" id="filedcount">Loading...</span></p>
+            </div>
+            <div class="card">
+                <h3>Crop Summary</h3>
+                <p>Total Crop Types: <span class="highlight" id="crop-count">Loading...</span></p>
+            </div>
+            <div class="card">
+                <h3>Equipment Status</h3>
+                <p>Total Equipment: <span class="highlight" id="equipment-count">Loading...</span></p>
+            </div>
+        </section>
+
+        <!-- Detailed Data Section -->
+        <section class="data-section">
+            <h2>Crop Data</h2>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Crop Type</th>
+                    <th>Growth Stage</th>
+                    <th>Total Extent</th>
+                    <th>Field Observations</th>
+                </tr>
+                </thead>
+                <tbody id="crop-data">
+                <tr>
+                    <td colspan="4">Loading data...</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="chart-section">
+            <h2>Data Visualizations</h2>
+            <div class="chart-container">
+                <canvas id="cropGrowthChart"></canvas>
+                <canvas id="equipmentCategoryChart"></canvas>
+            </div>
+        </section>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>

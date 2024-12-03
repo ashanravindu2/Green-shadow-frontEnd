@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Sidebar with Toggle</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <button class="toggle-btn" id="toggle-btn">☰</button>
+  <div class="sidebar" id="sidebar">
+
+    <div class="slide-head">
+        <img src="/assets/img/Staylinked.png" alt="">
+        <p>Green Shadow</p>
+    </div>
+
+    <div class="profile">
+        <img src="/assets/img/user (2).png" alt="Profile Picture" class="rounded-circle" />
+        <h style="font-weight: 500;">Ashan Ravindu</h5>
+            <h style="font-size: 15px;">Role</h>
+            <p class="text-muted" style="font-size: 12px;" >Manager</p>
+    </div>
+    
+    <a id="link-btn"  href="wall/homepage.html" target="iframe-content" id="dashboard-link ">
+        <img src="/assets/img/dashboardImg/Dashboard Layout.png" alt="">Dashboard
+    </a>
+
+        <a href="wall/StaffWall.html" target="iframe-content" id="dashboard-link">
+            <img src="/assets/img/dashboardImg/Member.png" alt="">Staff
+        </a>
+
+            <a href="wall/FieldWall.html" target="iframe-content" id="dashboard-link">
+                <img src="/assets/img/dashboardImg/Journey.png" alt="">Field
+            </a>
+
+            <a href="wall/CropWall.html" target="iframe-content" id="dashboard-link">
+                <img src="/assets/img/dashboardImg/Grass.png" alt="">Crops
+            </a>
+
+            <a href="wall/VehicleWall.html" target="iframe-content" id="dashboard-link">
+                <img src="/assets/img/dashboardImg/People in Car Side View.png" alt="">Vehicle
+            </a>
+
+            <a href="wall/EquWall.html" target="iframe-content" id="dashboard-link">
+                <img src="/assets/img/dashboardImg/Engine.png" alt="">Equipment
+            </a>
+
+            <a href="#" id="logoutButton" class="nav-link"  id="dashboard-link">
+                <img src="/assets/img/dashboardImg/Logout.png" alt="">Logout
+            </a>
+  </div>
+  <div class="content" id="content">
+    <iframe name="iframe-content" src="wall/homepage.html"></iframe>
+  </div>
+
+<!-- Logout Confirmation Modal -->
+<div id="logoutModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Are you sure you want to logout?</p>
+      <button id="confirmLogout">Yes</button>
+      <button id="cancelLogout">No</button>
+    </div>
+  </div>
+  
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

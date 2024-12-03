@@ -1,0 +1,245 @@
+
+
+body::before {
+    content: '';
+    position: absolute;
+    width: 100rem;
+    height: 100rem;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.747), transparent);
+    top: -30%;
+    left: -20%;
+    filter: blur(80px);
+    border-radius: 50%;
+    z-index: -1;
+  }
+  body::after {
+    content: '';
+    position: absolute;
+    width: 100rem;
+    height: 100rem;
+    background: radial-gradient(circle, rgb(0, 153, 255), transparent);
+    top: 0%;
+    left: 50%;
+    filter: blur(100px);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+ * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    background-color: rgb(231, 225, 225);
+  }
+
+  .sidebar {
+    width: 250px;
+    background-color: #2d924e;
+    color: #ecf0f1;
+    padding-top: 20px;
+    flex-shrink: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+    
+  }
+
+  #dashboard-link{
+    margin-bottom: 12px;
+    padding: 10px 20px;
+
+  }
+
+  .sidebar.hidden {
+    transform: translateX(-100%);
+  }
+
+  .sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+
+  .sidebar a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 15px 20px;
+    transition: background 0.3s;
+    display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 600;
+  }
+
+  .sidebar a img{
+      width: 40px;
+      height:40px;
+  }
+
+  .sidebar a:hover {
+    background-color: #54aa5f;
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 250px;
+    transition: margin-left 0.3s ease-in-out;
+  }
+
+  .content.shifted {
+    margin-left: 0;
+  }
+
+  iframe {
+    flex: 1;
+    border: none;
+  }
+
+  .toggle-btn {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #00000077;
+    color: #ecf0f1;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 1000;
+    border-radius: 5px;
+  
+  }
+
+  @media (max-width: 768px) {
+    .content {
+      margin-left: 0;
+    }
+  }
+div .slide-head{
+  margin-top: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      border-bottom: #ecf0f1 1px solid;
+ }
+
+  .slide-head img{
+      object-fit: cover;
+      width: 60px;
+      height: 60px;
+  }
+
+  .slide-head p{
+      font-size: 20px;
+      font-weight: 500;
+      margin-left: 10px;
+  }
+ .profile{
+  margin-top: 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      border-bottom: #ecf0f1 5px solid;
+      gap: 10px;
+      padding: 10px;
+  }
+
+  .profile img{
+      object-fit: cover;
+      width: 50px;
+      height: 50px;
+
+ }
+ a.active-link {
+          color: rgb(15, 87, 6); 
+          background-color: #8de2a3;
+      }
+/* Modal container */
+#logoutModal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scrolling if needed */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #ffffffa9;
+  margin: 15% auto; /* Centered vertically and horizontally */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%; /* Width of the modal */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center; /* Center the text */
+  height: 25%;
+}
+
+/* Close button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Modal buttons */
+.modal-content button {
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #34495e;
+}
+
+/* Confirm button */
+#confirmLogout {
+  background-color: #e74c3c;
+}
+
+#confirmLogout:hover {
+  background-color: #c0392b;
+}
+
+/* Cancel button */
+#cancelLogout {
+  background-color: #95a5a6;
+}
+
+#cancelLogout:hover {
+  background-color: #7f8c8d;
+}

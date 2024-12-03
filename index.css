@@ -1,0 +1,179 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #ffffff;
+
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #000000, #002141);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+/* 
+/* Reset */
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 100vw;
+  }
+  
+  /* Circular Blur Background */
+  body::before {
+    content: '';
+    position: absolute;
+    width: 1000px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(98, 255, 98, 0.637), transparent);
+    top: -20%;
+    left: -20%;
+    filter: blur(80px);
+    border-radius: 50%;
+    z-index: -1;
+  }
+  body::after {
+    content: '';
+    position: absolute;
+    width: 900px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 153, 255, 0.6), transparent);
+    bottom: 0%;
+    top: 50%;
+    right: 0%;
+    filter: blur(100px);
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+/* Container */
+.container {
+    text-align: center;
+
+    padding: 50px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(3, 178, 201, 0.363);
+    width: 50%;
+    height: 50%;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+}
+
+/* Header */
+header .logo img {
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 36px;
+    color: #ffffff;
+}
+
+header h1 span {
+    color: #1f8805;
+}
+
+header p {
+    font-size: 16px;
+    color: #ffffff;
+    margin-top: 10px;
+}
+
+
+.intro button {
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: #2a7513;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.intro button:hover {
+    background: #39a817;
+    transform: translateY(2px);
+}
+
+.intro button svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    animation: moveArrow 1s infinite;
+}
+
+/* Arrow Animation */
+@keyframes moveArrow {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+/* Footer */
+footer {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+
+/* animate*/
+
+body {
+    animation: fadeIn 1s ease-in-out;
+    -webkit-animation: fadeIn 1s ease-in-out; /* For older browsers */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    object-fit: cover;
+    overflow: hidden;
+    position: fixed;
+    top: 5rem;
+    gap: 15rem;
+}
+
+.img-container img{
+    width: 70%;
+    object-fit: cover;
+}
+
+#rightImg{
+    transform: scaleX(-1); 
+}
+
