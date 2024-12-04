@@ -36,5 +36,7 @@ export function tokenRefresh() {
 
 export function saveCookie(name, value) {
   document.cookie = `${name}=${value}; path=/;`;
+  
   console.log(`Cookie saved: ${name}=${value}`);
+
 }

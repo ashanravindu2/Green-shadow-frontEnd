@@ -16,8 +16,12 @@ $(".register-btn").click(function () {
     register(email, password, selectedRole)
       .then((response) => {
         const token = response.token;
+
         document.cookie = `authToken=${token}; max-age=3600; path=/; Secure; HttpOnly; SameSite=Strict`;
         console.log(`Cookie saved: authToken=${token}`);
+
+        localStorage.setItem("userEmail", email);
+        console.log(`User email saved: ${email}`);
 
         window.location.href = "/pages/signInPage.html";
       })
@@ -70,26 +74,3 @@ function validation(email, password) {
     return true;
   }
 }
-
-// async function success() {
-//   const notyf = new Notyf({
-//     duration: 3000,
-//     position: {
-//       x: "right",
-//       y: "top",
-//     },
-//     types: [
-//       {
-//         type: "success",
-//         background: "green",
-//         icon: {
-//           className: "material-icons",
-//           tagName: "i",
-//           text: "check_circle",
-//         },
-//       },
-//     ],
-//   });
-
-//   notyf.success("User registered successfully.");
-// }

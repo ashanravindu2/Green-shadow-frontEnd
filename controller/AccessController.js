@@ -3,6 +3,7 @@ import { showAlerts } from "./DashbaordController.js";
 
 export async function checkAccess(endpoint) {
   const loginEmail = localStorage.getItem("userEmail");
+  console.log(loginEmail);
   const role = await getUserByEmail(loginEmail);
   if (role === "MANAGER") {
     return true;
