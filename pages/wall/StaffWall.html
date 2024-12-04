@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="/css/Wall/StaffWall.css" />
   </head>
   <body class="p-5 pb-0 bg-transparent">
-
-
     <!-- save staff popup start -->
 
     <div
@@ -123,14 +121,18 @@
                 aria-label="Floating label select example"
               >
                 <option value="" disabled selected>Select an option</option>
-                <option value="MANAGER">MANAGER</option>
+                <option value="MANAGER">FARMER</option>
                 <option value="ADMINISTRATIVE">ADMINISTRATIVE</option>
                 <option value="SCIENTIST">SCIENTIST</option>
+                <option value="SCIENTIST">DRIVER</option>
+                <option value="SCIENTIST">EQUIPMENT HANDLER</option>
                 <option value="OTHER">OTHER</option>
               </select>
               <label for="floatingSelect">Role</label>
             </div>
-            <button type="button" class="btn btn-outline-success w-100">Save Staff Member</button>
+            <button type="button" class="btn btn-outline-success w-100">
+              Save Staff Member
+            </button>
           </div>
         </div>
       </div>
@@ -249,7 +251,9 @@
               </select>
               <label for="floatingSelect">Role</label>
             </div>
-            <button type="button" class="btn btn-outline-success w-100">Update Staff Member</button>
+            <button type="button" class="btn btn-outline-success w-100">
+              Update Staff Member
+            </button>
           </div>
         </div>
       </div>
@@ -387,12 +391,15 @@
 
     <!-- view staff popup end -->
 
-
     <h1>Staff Management</h1>
     <div class="d-flex justify-content-between align-items-center mt-5">
       <div class="d-flex gap-4">
-        <input  id="searchInput"     type="text" class="px-3 search-bar" placeholder="Search Staff......" />
-      
+        <input
+          id="searchInput"
+          type="text"
+          class="px-3 search-bar"
+          placeholder="Search Staff......"
+        />
       </div>
       <button
         class="add-member-btn border-0 p-2 d-flex align-items-center gap-2"

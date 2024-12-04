@@ -15,6 +15,9 @@ $(".signIn-btn").click(function () {
         saveCookie("authToken", token);
         console.log(`Cookie saved: authToken=${token}`);
 
+        localStorage.setItem("userEmail", email);
+        console.log(`User email saved: ${email}`);
+
         window.location.href = "/pages/dashboardMain.html";
       })
       .catch((error) => {
@@ -64,5 +67,30 @@ function validation(email, password) {
 }
 
 function passwordorEmailError(email, password) {
-  //check if the email or password is incorrect
+ const notyf = new Notyf({
+   duration: 3000,
+   position: {
+     x: "right",
+     y: "top",
+   },
+   types: [
+     {
+       type: "warning",
+       background: "orange",
+       icon: {
+         className: "material-icons",
+         tagName: "i",
+         text: "warning",
+       },
+     },
+   ],
+ });
+
+  if (!email || !password) {
+    notyf.error("Please enter your email and password.");
+  } else {
+    notyf.error("Email or password is incorrect.");
+  }
 }
+
+

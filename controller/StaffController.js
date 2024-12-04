@@ -46,7 +46,7 @@ $(document).ready(function () {
   });
 
   $(".search-bar").on("keyup", function () {
-    var searchValue = $(this).val();
+    var searchValue = $(this).val(); 
     $(".table .table-body > div").each(function () {
       const staffId = $(this).children(":nth-child(1)").text();
       const firstName = $(this).children(":nth-child(2)").text();

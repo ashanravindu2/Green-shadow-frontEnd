@@ -13,7 +13,7 @@ $(".register-btn").click(function () {
   const result = validation(email, password);
 
   if (result) {
-    register(email, password, selectedRole)
+    register(email, password, selectedRole, selectedRole)
       .then((response) => {
         const token = response.token;
 
@@ -37,7 +37,7 @@ $(".register-btn").click(function () {
 // Validation function
 
 // Validation function
-function validation(email, password) {
+function validation(email, password, selectedRole) {
   const notyf = new Notyf({
     duration: 3000,
     position: {
@@ -70,7 +70,9 @@ function validation(email, password) {
   if (!password || password.length < 8) {
     notyf.error("Password must be at least 8 characters.");
     return false;
-  } else {
+  } 
+  
+  else {
     return true;
   }
 }
