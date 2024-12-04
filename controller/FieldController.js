@@ -331,23 +331,36 @@ function loadDataToUpdateForm() {
       $("#update-field-popup .selected-staff").empty();
       selectedStaff = result.staffId;
       loadSelectStaff();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
 
-      getAllStaff()
-        .then((staffList) => {
-          $("#update-field-popup .staff-combo")
-            .empty()
-            .append(`<option value="N/A">N/A</option>`);
-          staffList.forEach((staff) => {
-            $("#update-field-popup .staff-combo").append(
-              `<option value="${staff.id}">${dataRefactor(staff.id, 15)} , ${
-                staff.firstName
-              }</option>`
-            );
-          });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+$("#floatingSelect").click(function () {
+  dipnBallo();
+});
+function dipnBallo() {
+  getAllStaff()
+    .then((staffList) => {
+      console.log(staffList);
+      // $("#update-field-popup .staff-combo")
+      //   .empty()
+      //   .append(`<option value="N/A">N/A</option>`);
+      staffList.forEach((staff) => {
+        $("#update-field-popup .staff-combo").append(
+          `<option value=${staff.id} , ${staff.firstName}</option>`
+        );
+      });
+
+      // // alert("Fuckkkkkkkkkkkkkkkkkkkkkkkk");
+      // const staffCombo = $("#update-field-popup .staff-combo");
+      // staffCombo.empty();
+      // const selectedStaff = staffList === null ? "" : staffList.staffId;
+      // staffCombo.append(
+      //   `<option value="N/A" ${selectedStaff === "" ? "selected" : ""}>No one
+      //       </option>`
+      // );
     })
     .catch((error) => {
       console.log(error);
